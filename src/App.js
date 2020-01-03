@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { HashRouter, Route, Link } from 'react-router-dom'
+
+import { Layout, Menu} from 'antd';
+
+import './css/app.less'
+import Home from './components/home/Home'
+import About from './components/about/About'
+import Movice from './components/movice/Movice'
+
+
+const { Header, Content ,Footer} = Layout;
+
+
+
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    
+    
+  }
+
+  render() {
+    return <HashRouter>
+  <Layout style={{height:"100%"}}>
+    <Header className="header">
+      <div className="logo" />
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={[window.location.hash.split('/')[1]]}
+        style={{ lineHeight: '64px' }}
+      >
+        <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
+        <Menu.Item key="movice"><Link to="movice/in_thearers/1">电影</Link></Menu.Item>
+        <Menu.Item key="about"><Link to="/about">关于</Link></Menu.Item>
+      </Menu>
+    </Header>
+    <Content style={{backgroundColor:'#fff', flex :1 }}>
+      <Route path="/home" component={Home} ></Route>
+      <Route path="/about" component={About} ></Route>
+      <Route path="/movice" component={Movice} ></Route>
+    </Content>
+    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+  </Layout>
+    </HashRouter>
+  }
 }
-
-export default App;
