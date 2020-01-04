@@ -10,6 +10,7 @@ export default class Movice extends React.Component {
     super(props)
     this.state={}
   }
+  
   render() {
     return  <Layout style={{height:"100%"}}>
     <Sider width={200} style={{ background: '#fff' }}>
@@ -18,9 +19,9 @@ export default class Movice extends React.Component {
         defaultSelectedKeys={['1']}
         style={{ height: '100%', borderRight: 0 }}
       >
-        <Menu.Item key="1"><Link to="/movice/in_thearers/1">正在热映</Link></Menu.Item>
-          <Menu.Item key="2"><Link to="/movice/comming_soon/1">即将上映</Link></Menu.Item>
-          <Menu.Item key="3"><Link to="/movice/Top25/1">Top250</Link></Menu.Item>
+        <Menu.Item key="1"><Link to="/movice/in_theaters/1" replace>正在热映</Link></Menu.Item>
+        <Menu.Item key="2"><Link to="/movice/coming_soon/1" replace>即将上映</Link></Menu.Item>
+        <Menu.Item key="3" ><Link to="/movice/top250/1" replace>Top250</Link></Menu.Item>
           
       </Menu>
     </Sider>

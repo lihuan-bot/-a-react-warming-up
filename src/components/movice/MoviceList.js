@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
 import{ request } from "../../network/request"
 import MoviceItem from './MoviceItem'
+// import axios from 'axios'
 
 class MoviceList extends Component {
   constructor(props){
@@ -9,7 +10,7 @@ class MoviceList extends Component {
     this.state={
       movices: [],
       nowPage:parseInt(props.match.params.page) || 1,
-      pageSize: 14,
+      pageSize: 20,
       total:0,
       isloading:true,
       moviceType:props.match.params.type
@@ -20,15 +21,23 @@ class MoviceList extends Component {
     
       this.loadMolist()
   }
+ UNSAFE_componentWillReceiveProps(nextProps){
+    this.setState({
+      isloading: true,
+      nowPage: parseInt(nextProps.match.params.page) || 1 ,
+      moviceType:nextProps.match.params.type
+     },function(){
+      this.loadMolist11()
+     })
+  
+ }
 
   render() {
     return <div>
       {this.renderList()}
     </div>
   }
-
-  
-  
+    
 
 loadMolist=()=>{
   request({
@@ -36,12 +45,10 @@ loadMolist=()=>{
     params: {
       start: this.state.pageSize * (this.state.nowPage - 1),
       count:this.state.pageSize, 
-
     }
     
   }).then(res=>{
     console.log(res);
-    
    this.setState({
      isloading:false,
      movices:res.subjects,
@@ -49,7 +56,23 @@ loadMolist=()=>{
    })
   })
 }
-
+loadMolist11=()=>{
+  request({
+    url:'/coming_soon',
+    params: {
+      start: this.state.pageSize * (this.state.nowPage - 1),
+      count:this.state.pageSize, 
+    }
+    
+  }).then(res=>{
+    console.log(res);
+   this.setState({
+     isloading:false,
+     movices:res.subjects,
+     total: res.total
+   })
+  })
+}
 
   renderList=() => {
     if(this.state.isloading) {
