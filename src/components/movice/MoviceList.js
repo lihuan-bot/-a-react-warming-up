@@ -22,16 +22,7 @@ class MoviceList extends Component {
     
       this.loadMolist()
   }
- UNSAFE_componentWillReceiveProps(nextProps){
-    this.setState({
-      isloading: true,
-      nowPage: parseInt(nextProps.match.params.page) || 1 ,
-      moviceType:nextProps.match.params.type
-     },function(){
-      this.loadMolist11()
-     })
-  
- }
+ 
  
   render() {
     return <div>
@@ -58,23 +49,7 @@ loadMolist=()=>{
    })
   })
 }
-loadMolist11=()=>{
-  request({
-    url:'/coming_soon',
-    params: {
-      start: this.state.pageSize * (this.state.nowPage - 1),
-      count:this.state.pageSize, 
-    }
-    
-  }).then(res=>{
-    console.log(res);
-   this.setState({
-     isloading:false,
-     movices:res.subjects,
-     total: res.total
-   })
-  })
-}
+
 
   renderList=() => {
     if(this.state.isloading) {
