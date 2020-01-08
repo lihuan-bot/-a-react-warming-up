@@ -35,9 +35,9 @@ export default class App extends Component {
         defaultSelectedKeys={[window.location.hash.split('/')[1]]}
         style={{ lineHeight: '64px' }}
       >
-        <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
+        {/* <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item> */}
         <Menu.Item key="movice"><Link to="movice/in_theaters/1">电影</Link></Menu.Item>
-        <Menu.Item key="about"><Link to="/about">关于</Link></Menu.Item>
+        {/* <Menu.Item key="about"><Link to="/about">关于</Link></Menu.Item> */}
       </Menu>
     </Header>
     <Content style={{backgroundColor:'#fff', flex :1 }}>
