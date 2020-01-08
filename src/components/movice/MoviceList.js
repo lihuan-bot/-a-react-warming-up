@@ -3,14 +3,15 @@ import { Spin, Alert } from 'antd';
 import{ request } from "../../network/request"
 import MoviceItem from './MoviceItem'
 // import axios from 'axios'
-
 class MoviceList extends Component {
   constructor(props){
     super(props)
+   
+    
     this.state={
       movices: [],
       nowPage:parseInt(props.match.params.page) || 1,
-      pageSize: 20,
+      pageSize: 15,
       total:0,
       isloading:true,
       moviceType:props.match.params.type
@@ -31,7 +32,7 @@ class MoviceList extends Component {
      })
   
  }
-
+ 
   render() {
     return <div>
       {this.renderList()}
@@ -43,6 +44,7 @@ loadMolist=()=>{
   request({
     url:'/in_theaters',
     params: {
+      apikey:'0b2bdeda43b5688921839c8ecb20399b',
       start: this.state.pageSize * (this.state.nowPage - 1),
       count:this.state.pageSize, 
     }

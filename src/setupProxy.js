@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     proxy({
-      target:'https://douban.uieee.com/v2/movie/',
+      target:'https://api.douban.com/v2/movie/',
       changeOrigin: true,
       pathRewrite: {
         "^/api": "/"
